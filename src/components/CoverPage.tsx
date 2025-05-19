@@ -3,7 +3,7 @@ import React from 'react';
 import coverImage from '../assets/cover.jpeg';  // cover image
 
 interface CoverPageProps {
-  onNavigate: (page: 'readme' | 'training1' | 'training2' | 'training3') => void;
+  onNavigate: (page: 'Introduction' | 'training1' | 'training2' | 'training3') => void;
 }
 
 const buttonStyle: React.CSSProperties = {
@@ -42,7 +42,7 @@ const CoverPage: React.FC<CoverPageProps> = ({ onNavigate }) => (
       </a>
     </div>
     {/* Navigation Buttons */}
-    <button style={buttonStyle} onClick={() => onNavigate('readme')}>Read Me</button>
+    <button style={buttonStyle} onClick={() => onNavigate('Introduction')}>Read Me</button>
     <button style={buttonStyle} onClick={() => onNavigate('training1')}>Training 1</button>
     <button style={buttonStyle} onClick={() => onNavigate('training2')}>Training 2</button>
     <button style={buttonStyle} onClick={() => onNavigate('training3')}>Training 3</button>
