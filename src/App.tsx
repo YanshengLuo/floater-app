@@ -1,25 +1,23 @@
 // src/App.tsx
-import { useState } from 'react'
-import CoverPage from './components/CoverPage'
-import ReadMePage from './components/ReadMePage'
-import TroxlerAdaptation from './components/TroxlerAdaptation'
-import './App.css'
+import { useState } from 'react';
+import CoverPage from './components/CoverPage';
+import IntroductionPage from './components/IntroductionPage';
+import TroxlerAdaptation from './components/TroxlerAdaptation';
+import FloatingDots from './components/FloatingDots'
+import './App.css';
 
-type Page = 'cover' | 'readme' | 'training1' | 'training2' | 'training3'
+type Page = 'cover' | 'introduction' | 'training1' | 'training2' | 'training3';
 
 function App() {
-  const [page, setPage] = useState<Page>('cover')
-  const goBack = () => setPage('cover')
+  const [page, setPage] = useState<Page>('cover');
+  const goBack = () => setPage('cover');
 
   return (
     <>
       {page === 'cover' && <CoverPage onNavigate={setPage} />}
-
-      {page === 'readme' && <ReadMePage onBack={goBack} />}
-
+      {page === 'introduction' && <IntroductionPage onBack={goBack} />}
       {page === 'training1' && (
         <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#202020' }}>
-          {/* Back button */}
           <button
             onClick={goBack}
             style={{
@@ -33,25 +31,24 @@ function App() {
           >
             ← Back
           </button>
-
-          {/* Troxler Adaptation Module */}
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            <TroxlerAdaptation
-              width={600}
-              height={400}
-              onComplete={() => alert('Trial complete!')}
-            />
+            <TroxlerAdaptation width={600} height={400} onComplete={() => alert('Trial complete!')} />
           </div>
         </div>
       )}
-
       {page === 'training2' && (
-        <div style={{ padding: '40px', color: '#fff', minHeight: '100vh', backgroundColor: '#202020' }}>
-          <button onClick={goBack}>← Back</button>
-          <h2>Training 2: MIB Module (coming soon)</h2>
-        </div>
-      )}
-
+		<div style={{ position:'relative', minHeight:'100vh', backgroundColor:'#202020' }}>
+		 <button onClick={goBack}>← Back</button>
+		 <FloatingDots
+			width={600}
+			height={400}
+			numDiscs={8}
+			numTargets={2}
+			speed={2}
+			onComplete={() => alert('Block complete!')}
+		 />
+		</div>
+)}
       {page === 'training3' && (
         <div style={{ padding: '40px', color: '#fff', minHeight: '100vh', backgroundColor: '#202020' }}>
           <button onClick={goBack}>← Back</button>
@@ -59,7 +56,7 @@ function App() {
         </div>
       )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
